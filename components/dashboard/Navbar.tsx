@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Menu, X, LogOut, User as UserIcon } from "lucide-react";
 
 interface NavbarProps {
-  user: User;
+  user: Partial<User>;
 }
 
 export default function Navbar({ user }: NavbarProps) {
