@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { pizzaOrders, OrderStatus } from '@/data/orders';
 import StatusBadge from '@/components/dashboard/StatusBadge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { OrderStatus, pizzaOrders } from '@/data/orders';
 import { ArrowUpDown, Search } from 'lucide-react';
+import { useMemo, useState } from 'react';
 
 type SortField = 'id' | 'customerName' | 'pizzaType' | 'quantity' | 'orderDate' | 'status';
 type SortDirection = 'asc' | 'desc';
@@ -81,18 +82,22 @@ export default function OrdersPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <select
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
+          <Select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as OrderStatus | 'All')}
+            onValueChange={(value) => setStatusFilter(value as OrderStatus | 'All')}
           >
-            <option value="All">All Statuses</option>
-            <option value="Pending">Pending</option>
-            <option value="Preparing">Preparing</option>
-            <option value="Out for Delivery">Out for Delivery</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="All">All Statuses</SelectItem>
+              <SelectItem value="Pending">Pending</SelectItem>
+              <SelectItem value="Preparing">Preparing</SelectItem>
+              <SelectItem value="Out for Delivery">Out for Delivery</SelectItem>
+              <SelectItem value="Delivered">Delivered</SelectItem>
+              <SelectItem value="Cancelled">Cancelled</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 
