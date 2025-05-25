@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { pizzaOrders, PizzaOrder, OrderStatus } from '@/data/orders';
+import { pizzaOrders, OrderStatus } from '@/data/orders';
 import StatusBadge from '@/components/dashboard/StatusBadge';
 import { ArrowUpDown, Search } from 'lucide-react';
 
@@ -59,6 +59,7 @@ export default function OrdersPage() {
 
         return sortDirection === 'asc' ? comparison : -comparison;
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pizzaOrders, sortField, sortDirection, statusFilter, searchTerm]);
 
   return (
